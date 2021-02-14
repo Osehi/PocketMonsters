@@ -1,5 +1,6 @@
 package com.polish.pocketmonsters.di
 
+import com.polish.pocketmonsters.constants.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -7,6 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -42,4 +44,17 @@ class NetworkModule {
             .addInterceptor(logger)
             .build()
     }
+    /**
+     * an instance of the retrofit object
+     * this is an httpt client used to make the network call
+     */
+    fun provideService(client: OkHttpClient, converterFactory:GsonConverterFactory):Retrofit{
+        return Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .client(client)
+            .addConverterFactory(converterFactory)
+            .build()
+
+    }
+
 }
