@@ -1,5 +1,6 @@
 package com.polish.pocketmonsters.di
 
+import com.polish.pocketmonsters.apiendpoint.APIPokemon
 import com.polish.pocketmonsters.constants.Constants
 import dagger.Module
 import dagger.Provides
@@ -55,6 +56,14 @@ class NetworkModule {
             .addConverterFactory(converterFactory)
             .build()
 
+    }
+    /**
+     * create an instance of the APIPokemon
+     */
+    @Provides
+    @Singleton
+    fun provideAPIPokemonService(pokemonRetrofit: Retrofit):APIPokemon{
+        return pokemonRetrofit.create(APIPokemon::class.java)
     }
 
 }
