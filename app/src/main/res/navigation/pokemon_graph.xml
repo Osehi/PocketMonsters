@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/pokemon_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pokemon_graph"
+    app:startDestination="@id/displayPokemonCharactersFragment">
 
+    <fragment
+        android:id="@+id/displayPokemonCharactersFragment"
+        android:name="com.polish.pocketmonsters.view.DisplayPokemonCharactersFragment"
+        android:label="fragment_display_pokemon_characters"
+        tools:layout="@layout/fragment_display_pokemon_characters" />
 </navigation>

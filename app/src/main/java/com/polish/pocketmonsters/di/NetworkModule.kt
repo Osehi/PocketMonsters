@@ -1,5 +1,6 @@
 package com.polish.pocketmonsters.di
 
+import com.google.gson.Gson
 import com.polish.pocketmonsters.apiendpoint.APIPokemon
 import com.polish.pocketmonsters.constants.Constants
 import dagger.Module
@@ -32,8 +33,10 @@ class NetworkModule {
      * this converter helps for serialization of objects(java object)
      * from object to btye stream and back to object
      */
-    fun providesConverterFactory(): Converter.Factory{
-        return GsonConverterFactory.create()
+    @Provides
+    @Singleton
+    fun providesConverterFactory(): GsonConverterFactory{
+        return GsonConverterFactory.create(Gson())
     }
     /**
      * OkHttp is an http client used for making Http request
@@ -49,6 +52,8 @@ class NetworkModule {
      * an instance of the retrofit object
      * this is an httpt client used to make the network call
      */
+    @Provides
+    @Singleton
     fun provideService(client: OkHttpClient, converterFactory:GsonConverterFactory):Retrofit{
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)

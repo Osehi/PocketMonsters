@@ -2,6 +2,7 @@ package com.polish.pocketmonsters.repository
 
 import android.util.Log
 import com.polish.pocketmonsters.apiendpoint.APIPokemon
+import com.polish.pocketmonsters.networkdatamodel.PokemonCharacters
 import com.polish.pocketmonsters.networkdatamodel.Result
 import com.polish.pocketmonsters.utils.DataState
 import kotlinx.coroutines.Dispatchers
@@ -11,7 +12,7 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 class IRepositoryImpl @Inject constructor(val pokemonApi:APIPokemon): IRepository {
-    override suspend fun allPokemon(limit: String): DataState<Result> {
+    override suspend fun allPokemon(limit: String): DataState<PokemonCharacters> {
         return withContext(Dispatchers.IO){
             try {
                 DataState.Success(pokemonApi.allPokemons(limit))
