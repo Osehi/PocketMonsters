@@ -1,4 +1,11 @@
 package com.polish.pocketmonsters.repository
 
-class IRepositoryImpl {
+import com.polish.pocketmonsters.networkdatamodel.Result
+import javax.inject.Inject
+
+class IRepositoryImpl @Inject constructor(): IRepository {
+    override suspend fun allPokemon(limit: String): Result {
+        return Result()
+
+    }
 }
