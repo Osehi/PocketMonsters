@@ -40,13 +40,7 @@ class DisplayPokemonCharactersFragment : Fragment() {
        _binding = FragmentDisplayPokemonCharactersBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        /**
-         * TEST THE NETWORK CALL
-         */
-        binding.button.setOnClickListener {
-            var limit = "9"
-            pokemonViewModel.getAllPokemonCharacters(limit.toString())
-        }
+
 
 
         return view

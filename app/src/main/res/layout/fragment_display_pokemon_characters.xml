@@ -4,29 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_bg"
     tools:context=".view.DisplayPokemonCharactersFragment">
 
-
-    <TextView
-        android:id="@+id/textview_tv"
+    <Spinner
+        android:id="@+id/frag_display_pokemon_characters_sr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
+        android:entries="@array/numbers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.667" />
+        app:layout_constraintVertical_bias="0.062" />
+
+    <Button
+        android:id="@+id/frag_display_pokemon_characters_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frag_display_pokemon_btn_str"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
