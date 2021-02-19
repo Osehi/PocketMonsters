@@ -16,7 +16,7 @@ import javax.inject.Inject
 class PokemonViewModel@Inject constructor (private val repository:IRepository,  private val savesStateHandle: SavedStateHandle): ViewModel(){
     val TAG = "PokemonViewModel"
     /**
-     * create viewmodel object
+     * create livedata object
      */
     private var _getAllPokemonResponse = MutableLiveData<DataState<PokemonCharacters>>()
     val getAllPokemonResponse: LiveData<DataState<PokemonCharacters>>
@@ -43,5 +43,10 @@ class PokemonViewModel@Inject constructor (private val repository:IRepository,  
                 Log.d(TAG, "the list of pokemon characters:${outputFromRemote}")
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 }
