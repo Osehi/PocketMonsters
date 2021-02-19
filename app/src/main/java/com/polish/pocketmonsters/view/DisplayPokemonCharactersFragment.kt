@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.polish.pocketmonsters.R
 import com.polish.pocketmonsters.adapter.PokemonAdapter
 import com.polish.pocketmonsters.databinding.FragmentDisplayPokemonCharactersBinding
+import com.polish.pocketmonsters.networkdatamodel.PokemonCharacters
+import com.polish.pocketmonsters.networkdatamodel.Result
+import com.polish.pocketmonsters.utils.DataState
 import com.polish.pocketmonsters.viewmodel.PokemonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,6 +33,7 @@ class DisplayPokemonCharactersFragment : Fragment() {
     lateinit var mySpinner: Spinner
     lateinit var selectedLimit:String
     lateinit var display:Button
+    lateinit var pokemonCharacterAdapter: PokemonAdapter
 
 
     /**
@@ -75,9 +80,18 @@ class DisplayPokemonCharactersFragment : Fragment() {
         }
 
         /**
-         * observe the response
+         * observe the response and set it to the adapter
          */
-        
+        pokemonViewModel.getAllPokemonResponse.observe(viewLifecycleOwner, Observer {
+            when(it){
+                is DataState.Success -> {
+                    val pokemonData = it.data.results
+                    populateAdapter(pokemonData!!)
+                    Log.d(TAG, "result of the $pokemonData")
+                }
+            }
+        })
+
 
 
 
@@ -101,6 +115,12 @@ class DisplayPokemonCharactersFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun populateAdapter(dataStream:List<Result>){
+        pokemonAdapter = PokemonAdapter(dataStream)
+        myRecyclerview.adapter = pokemonAdapter
+        pokemonAdapter.notifyDataSetChanged()
     }
 
 
