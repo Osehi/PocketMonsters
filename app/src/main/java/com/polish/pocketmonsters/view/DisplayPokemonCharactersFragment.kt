@@ -119,6 +119,7 @@ class DisplayPokemonCharactersFragment : Fragment() {
 
     private fun populateAdapter(dataStream:List<Result>){
         pokemonAdapter = PokemonAdapter(dataStream)
+        Log.d(TAG, "inside the datastream:$dataStream")
         myRecyclerview.adapter = pokemonAdapter
         pokemonAdapter.notifyDataSetChanged()
     }

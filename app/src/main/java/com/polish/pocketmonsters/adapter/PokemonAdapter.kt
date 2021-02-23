@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.with
 import com.polish.pocketmonsters.databinding.PokemonListItemBinding
 import com.polish.pocketmonsters.networkdatamodel.Result
+import com.polish.pocketmonsters.utils.GlideApp
+import com.polish.pocketmonsters.utils.getUrl
 
 class PokemonAdapter(private val pokemonIcon:List<Result>):RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
     /**
@@ -32,10 +35,9 @@ class PokemonAdapter(private val pokemonIcon:List<Result>):RecyclerView.Adapter<
          */
         val item = pokemonIcon[position]
         holder.pokemonName.text = item.name.toString()
-        var urlFromServer = item.url.toString()
-        var toGeNumber = urlFromServer.replace("/","")
-        var number = toGeNumber[toGeNumber.length - 1].toString()
-        var pokemonImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png"
+        val urlFromServer = item.url.toString()
+        val number = getUrl(urlFromServer)
+        val pokemonImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png"
         Log.d("onBindView", "the result:$pokemonImageUrl")
         Glide.with(holder.itemView.context).load(pokemonImageUrl).into(holder.pokemonImage)
     }
