@@ -33,7 +33,7 @@ class DisplayPokemonCharactersFragment : Fragment() {
     lateinit var mySpinner: Spinner
     lateinit var selectedLimit:String
     lateinit var display:Button
-    lateinit var pokemonCharacterAdapter: PokemonAdapter
+
 
 
     /**
@@ -118,7 +118,10 @@ class DisplayPokemonCharactersFragment : Fragment() {
     }
 
     private fun populateAdapter(dataStream:List<Result>){
-        pokemonAdapter = PokemonAdapter(dataStream)
+        pokemonAdapter = PokemonAdapter(dataStream, PokemonAdapter.OnClickListener{
+            Toast.makeText(context, "here is a click:${it.name}", Toast.LENGTH_LONG).show()
+            Log.d(TAG, "is it working:${it.name}")
+        })
         Log.d(TAG, "inside the datastream:$dataStream")
         myRecyclerview.adapter = pokemonAdapter
         pokemonAdapter.notifyDataSetChanged()

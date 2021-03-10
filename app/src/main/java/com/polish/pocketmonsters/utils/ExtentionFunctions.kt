@@ -1,5 +1,8 @@
 package com.polish.pocketmonsters.utils
 
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+
 fun getUrl(urlFromSource:String):String{
 
     val toGetNumber = urlFromSource.replace("/", "")
@@ -11,4 +14,9 @@ fun getUrl(urlFromSource:String):String{
         val second = toGetNumber[toGetNumber.length - 1].toString()
         return "$first$second"
     }
+}
+
+fun bindImage(imgUri:String, imgView:ImageView){
+    Glide.with(imgView.context)
+            .load(imgUri).into(imgView)
 }
